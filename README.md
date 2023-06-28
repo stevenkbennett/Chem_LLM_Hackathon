@@ -1,5 +1,5 @@
 <!-- Create title -->
-# Welcone to the 2023 Chemistry DigiFab Hackahton
+# Welcone to the 2023 Chemistry DigiFab Hackathon
 
 Throughoput the day, you will compete in three challenges, which are: 
 <!-- Create list -->
