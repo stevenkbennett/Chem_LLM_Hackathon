@@ -5,6 +5,6 @@ dependencies:
   - python=3.6
   - pip
   - ipykernel
+  - pip:
+    - -r requirements.txt
 prefix: /rds/general/user/sb2518/home/anaconda3/envs/Datathon_LLM
-pip:
-  - -r requirements.txt
