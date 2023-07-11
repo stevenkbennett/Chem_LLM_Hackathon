@@ -1,0 +1,24 @@
+C C ( = O ) c 1 c c c 2 c ( c c n 2 C ( = O ) O C ( C ) ( C ) C ) c 1
+C c 1 c c c ( S ( = O ) ( = O ) O [C@@H] 2 C N ( C ( = O ) O C ( C ) ( C ) C ) [C@@H] 3 [C@@H] ( O ) C O [C@@H] 3 2 ) c c 1
+C C O C ( = O ) c 1 n n ( - c 2 c c c ( Cl ) c c 2 Cl ) c ( - c 2 c c c ( O C ) c c 2 ) c 1 C Br
+C C ( C ) ( C ) O C ( = O ) N c 1 n c 2 c ( - c 3 c c c c ( [N+] ( = O ) [O-] ) c 3 ) c c ( C # N ) c c 2 s 1
+O = C ( N C c 1 c c c c c 1 S ( = O ) ( = O ) C 1 C C 1 ) C ( F ) ( F ) F
+C [Si] ( C ) ( C ) O C ( = O ) / C = C / C Br
+C C ( C ) ( C ) O C ( = O ) N 1 C C c 2 o c 3 c ( Cl ) c c ( S ( = O ) c 4 c c c c c 4 ) c c 3 c 2 C 1
+C C ( C ) ( C ) O C ( = O ) n 1 c n c ( C = O ) c 1
+Cl c 1 c c ( Cl ) c ( C Br ) c n 1
+C O c 1 n c 2 c c c ( C ( = O ) c 3 c n n n 3 C ) c c 2 c ( Cl ) c 1 C c 1 c c c ( C ( F ) ( F ) F ) c c 1
+C C ( = O ) c 1 n c 2 c c ( N C ( = O ) c 3 c c c ( / C = C / C ( F ) ( F ) F ) c c 3 C ) c c c 2 s 1
+C C O C ( = O ) C 1 C C C 2 ( C C 1 ) O C C O 2
+C C C C c 1 n c c ( C ( C ) = O ) n 1 C c 1 c c c c c 1 Cl
+C C 1 ( c 2 c c 3 c c c [n+] ( [O-] ) c 3 [nH] 2 ) C C 1
+O = C c 1 c c c ( F ) c ( [N+] ( = O ) [O-] ) c 1
+C c 1 c c c c ( C # C c 2 c c c ( - c 3 c c n n 3 C ) c c 2 ) n 1
+N c 1 c c c ( - c 2 c ( F ) c c c c 2 C ( F ) ( F ) F ) c c 1 [N+] ( = O ) [O-]
+C C N C ( = O ) N c 1 c c ( - c 2 n c ( C ( F ) ( F ) F ) c s 2 ) c ( - c 2 c c c 3 c ( c 2 ) c ( = O ) c ( C ( = O ) O C C ) c n 3 C ( C C ) C O ) c n 1
+N c 1 n c c ( Br ) c c 1 C ( = O ) c 1 c c c c c 1
+C O C C n 1 c c ( - c 2 c c c c ( C C O C C C ( = O ) O C ( C ) ( C ) C ) c 2 ) c n 1
+C C O C ( = O ) C C ( = O ) C C ( O ) C = C C ( = C ( c 1 c c c ( F ) c c 1 ) c 1 c c c ( F ) c c 1 ) c 1 n n n n 1 C C
+C O c 1 c c c ( C N ( c 2 n c c s 2 ) S ( = O ) ( = O ) c 2 c c c 3 c ( c 2 ) O C C N 3 c 2 c c c ( C ( F ) ( F ) F ) c c 2 - c 2 c c n n 2 C ) c c 1
+C C ( C ) ( C ) O C ( = O ) N 1 C C = C ( c 2 c c c c ( [N+] ( = O ) [O-] ) c 2 N ) C C 1
+Br c 1 c c c c ( - c 2 c c c c n 2 ) c 1
