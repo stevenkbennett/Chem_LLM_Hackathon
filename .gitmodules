@@ -1,0 +1,3 @@
+[submodule ".autoscore/.modules/scscore"]
+	path = .autoscore/.modules/scscore
+	url = https://github.com/connorcoley/scscore.git
