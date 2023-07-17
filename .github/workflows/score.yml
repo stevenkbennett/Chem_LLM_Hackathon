@@ -34,3 +34,29 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           filePath: score.txt
+  score_task_1:
+    score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+          cache: pip
+          cache-dependency-path: .autoscore/requirements_task_1.txt
+
+      - name: Install dependencies
+        run: pip install -r .autoscore/requirements_task_1.txt
+
+      - name: Unencrypt answer files in root directory
+        run: |
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output test_task_1.txt .autoscore/test_task_1.txt.gpg
+
+      - name: Calculate score and write to score.txt
+        run: python Task_1/eval.py
+
+      - name: Upload score to PR comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: scores_task_1.txt

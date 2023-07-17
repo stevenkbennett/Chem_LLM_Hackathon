@@ -268,7 +268,7 @@ def main():
         -1,
         -1
     ]
-    with open("/home/sbennett/Postdoc/Hackathons/Chem_LLM_Hackathon/Task_1/example_results.json", 'r') as f:
+    with open("task_1_predictions.json", 'r') as f:
         results = json.load(f)
     scoring_str = "Retrosynthesis Metrics\n-------------------\n"
     scaled_tot = 0
@@ -281,7 +281,7 @@ def main():
         scoring_str += "Scaled Result: " + str(round(scaled_res, 2)) + "\n"
         scoring_str += "-------------------\n"
     # Write to a file 
-    with open(Path(__file__+"/../../.autoscore/scores_task_1.txt").resolve(), 'w') as f:
+    with open("scores_task_1.txt", 'w') as f:
         f.write(scoring_str)
 
 
