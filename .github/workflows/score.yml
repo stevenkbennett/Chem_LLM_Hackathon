@@ -35,7 +35,6 @@ jobs:
         with:
           filePath: score.txt
   score_task_1:
-    score:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
