@@ -181,7 +181,7 @@ class TopK(Evaluator):
         """
         top_k_count = 0
         # Load test data
-        with open(Path(__file__+"/../../.autoscore/test_task_1.txt").resolve(), 'r') as f:
+        with open("test_task_1.txt", 'r') as f:
             targets = f.read().replace(" ", "").split("\n")
         for i, reaction in enumerate(results.values()):
             for k, reactants in enumerate(reaction):
