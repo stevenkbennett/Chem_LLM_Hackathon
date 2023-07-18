@@ -15,7 +15,7 @@
         "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C1Cc1ccc(S(=O)(=O)O[C@@H]2CN[C@@H]3C(=O)CO[C@@H]32)cc1",
         "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.O=S(=O)(O[C@@H]1CN[C@@H]2[C@@H](O)CO[C@@H]21)c1ccc(CBr)cc1",
         "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C1Cc1ccc(S(=O)(=O)O[C@@H]2CN[C@@H]3[C@H](OCc4ccccc4)CO",
-        "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.CC(C)(C)OC(=O)OC(=O)OC(C)(C)C)Cc1ccc(S",
+        "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.CC(C(C)OC(=O)OC(=O)OC(C)(C)C)Cc1ccc(S",
         "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.O=S(=O)(Oc1ccc(C[C@H]2CO[C@@H]3[C@H](O)CO[C@@H]23)cc1)C(",
         "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.O=S(=O)(Oc1ccc(C[C@H]2CN[C@@H]3[C@@H](O)CO[C@@H]32)cc1)C(",
         "CC(C)(C)OC(=O)OC(=O)OC(C)(C)C.O=S(=O)(Oc1ccc(C[C@H]2CO[C@@H]3[C@@H](O)CO[C@@H]23)cc1)C(",
