@@ -3,9 +3,9 @@ from onmt.translate.translator import build_translator
 from argparse import ArgumentParser
 from onmt.opts import translate_opts, model_opts, train_opts
 import tempfile
-from train import create_training_args
+from train import add_training_args
 from train import main as trainer
-
+from pathlib import Path
 
 class Model:
     def __init__(self, model_path):
@@ -17,13 +17,13 @@ class Model:
         # Process arguments as a namedtuple for ONMT parsing.
         # Change to a list to allow for multiple models.
         if not isinstance(model_path, list):
-            self._model_path = [model_path]
+            self._model_path = [str(Path(model_path).resolve())]
         parser = ArgumentParser()
         translate_opts(parser)
         output_path = tempfile.NamedTemporaryFile(delete=False).name
         # Perform argument parsing for ONMT.
         args = parser.parse_args(
-            ['-model'] + model_path \
+            ['-model'] + self._model_path \
             + ['-output'] + [output_path] \
             + ['-src'] + ['None'] \
         )
@@ -68,12 +68,18 @@ class Model:
             res[source_mols[i]] = preds[i*num_predictions:(i+1)*num_predictions]
         return res
     
-    def train(self):
+    def train(self, data_path, num_epochs=1):
         """Trains the model."""
-        train_parser = create_training_args()
-        model_opts(train_parser)
-        train_opts(model_opts)
-        opt = train_parser.parse_args()
+        print(self._model_path)
+        parser = ArgumentParser()
+        model_opts(parser)
+        train_opts(parser)
+        opt = parser.parse_args(
+            ['-data'] + ['/home/sbennett/Postdoc/Hackathons/Chem_LLM_Hackathon/Fred_Folder/Hackathon/example_notebooks/MolecularTransformer/data/USPTO50USPTO50'] \
+            + ['-train_from'] + [self._model_path[0]] \
+            + ['-train_steps'] + [str(num_epochs)] \
+        )
+        
         trainer(opt)
 
 

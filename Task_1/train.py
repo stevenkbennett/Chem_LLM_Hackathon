@@ -29,7 +29,6 @@ def main(opt):
     if len(opt.gpuid) > 1:
         raise AssertionError("gpuid is deprecated \
               see world_size and gpu_ranks")
-
     nb_gpu = len(opt.gpu_ranks)
 
     if opt.world_size > 1:
@@ -118,9 +117,8 @@ if __name__ == "__main__":
     opt = parser.parse_args()
     main(opt)
 
-def create_training_args(data_path, checkpoint_path=None):
-    parser = ArgumentParser()
-    parser.add_argument('-data', type=str, required=True)
+def add_training_args(parser, data_path, checkpoint_path=None):
+    parser.add_argument('-data', type=str, required=data_path)
     parser.add_argument('-save_model', type=str, required=True)
     parser.add_argument('-seed', type=int, default=42)
     parser.add_argument('-gpu_ranks', type=int, default=0)
