@@ -171,6 +171,7 @@ def main():
     with open("task_1_predictions.json", 'r') as f:
         results = json.load(f)
     tot = 0
+    scoring_str = ""
     for i, callable in enumerate(metrics):
         unscaled_res =round(metrics[callable](results), 2) 
         tot += unscaled_res
