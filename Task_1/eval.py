@@ -47,58 +47,6 @@ class Evaluator:
         ]
         return smi1 == smi2
 
-class MLEvaluator(Evaluator):
-    """ABC for performing evaluations using ML models."""
-    def __init__(self, model):
-        """Initializes the evaluator.
-
-        Args:
-            model (callable): A callable model.
-        """
-        self._model = model
-        super().__init__()
-
-
-
-
-class SCScore(MLEvaluator):
-    def __init__(self):
-        model_path = Path(__file__ + "/../../.autoscore/.modules/scscore").resolve()
-        print(model_path)
-        sys.path.append(str(model_path))
-        from scscore.standalone_model_numpy import SCScorer
-        scscore = SCScorer()
-        scscore.restore()
-        model = scscore.get_score_from_smi
-        super().__init__(model)
-    
-    def __call__(self, results: dict) -> float:
-        scscore_reactions = []
-        scscore_prod = []
-        for prod, reaction in results.items():
-            _, prod_sc = self._model(prod)
-            scscore_prod.append(prod_sc)
-            scscore_reaction = []
-            for reactants in reaction:
-                if any(self.is_valid_smiles(smi) is False for smi in reactants.split(".")):
-                    continue
-                curr_scscore = 0
-                for smi in reactants.split("."):
-                    # If the SMILES string is invalid, skip it
-                    _, x = self._model(smi)
-                    curr_scscore += x
-                av_scscore = curr_scscore / len(reactants.split("."))
-                scscore_reaction.append(av_scscore)
-            scscore_reactions.append(np.mean(scscore_reaction))
-        # Remove all NaNs
-        scscore_all = np.array([x for x in zip(scscore_prod, scscore_reactions) if str(x[0]) != 'nan'])
-        # Calculate mean difference between products and reactants
-        return np.mean(scscore_all[:, 0] - scscore_all[:, 1])
-
-
-class RoundTrip(Evaluator):
-    """Performs a round-trip evaluation."""
-    ...
 
 class InvalidSMILES(Evaluator):
     def __init__(self):
@@ -119,44 +67,6 @@ class InvalidSMILES(Evaluator):
 
         return 1-np.mean(tot_invalid)
 
-
-class Diversity(MLEvaluator):
-    """Performs a diversity evaluation."""
-
-    def __init__(self):
-        model, self._tokenizer = get_default_model_and_tokenizer(force_no_cuda=True)
-        self._fp_generator = RXNBERTFingerprintGenerator(model, self._tokenizer)
-        self._lr_predictor = pickle.load(open(Path(__file__+"/../Data/Eval_Utils/lr_cls.pkl").resolve(), 'rb'))
-        super().__init__(model) 
-        
-
-
-    def __call__(self, results):
-        """Calculates the diversity score for the model."""
-        reactions = []
-        for target, reaction in results.items():
-            reactant_set = set()
-            for reactants in reaction:
-                rxn_cls = self.predict_reaction_class(target, reactants.split("."))
-                reactant_set.add(rxn_cls)
-            reactions.append(reactant_set)
-        num_unique = [len(x) for x in reactions]
-        unique_per = [x / len(y) for x, y in zip(num_unique, reactions)]
-        return np.mean(unique_per)
-
-
-    def predict_reaction_class(self, target_smile, reactant_smiles):
-        """Calculate single reaction class diversity score 
-        """
-        target = Chem.MolToSmiles(Chem.MolFromSmiles(target_smile), canonical=True, kekuleSmiles=True)
-        # Concatenate strings into right format
-        rxn = [reactant + ">>" + target for reactant in reactant_smiles]
-        rxnfp_generator = RXNBERTFingerprintGenerator(self._model, self._tokenizer)
-        rxn =  rxnfp_generator.convert_batch(rxn)
-        # The array will be of shape (n_rxns, n_rxnfp)
-        rxn = np.array(rxn)
-        pred = self._lr_predictor.predict(rxn)
-        return pred
 
 class TopK(Evaluator):
     """Performs a top-N evaluation."""

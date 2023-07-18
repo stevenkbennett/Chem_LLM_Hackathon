@@ -3,6 +3,8 @@ from pathlib import Path
 
 from langchain import OpenAI
 from tabulate import tabulate
+import sys
+
 
 
 
@@ -61,9 +63,7 @@ def get_task2_score():
 
 def get_task1_score():
     """Get the total score for task 1 and summarise the score."""
-    import sys
-    print(sys.path)
-    sys.path.append(Path(__file__+"/../..").resolve())
+    sys.path.append(str(Path(__file__+"/../..").resolve()))
     from Task_1.eval import main as task1_eval
     if not Path("task_1_predictions.json").exists():
         return "No results submitted for task 1.", None
