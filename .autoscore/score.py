@@ -59,7 +59,7 @@ def get_task2_score():
         headers=["Question", "Score"],
         tablefmt="github",
     )
-    final_score = sum(scores) / len(task2_data)
+    final_score = sum(scores) / len(task2_data) * 9
     return response, final_score
 
 
@@ -107,7 +107,6 @@ def get_response():
         print(e)
         task2_response = f"Error getting task 2 score."
         task2_score = None
-    # task2_response, task2_score = get_task2_score()
     total_score = get_total_score(task1_score, task2_score)
 
     response = "# Task 1 - Retrosynthesis\n\n"
