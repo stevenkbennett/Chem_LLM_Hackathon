@@ -1,10 +1,11 @@
 # Outlines the model architecture.
 from onmt.translate.translator import build_translator
 from argparse import ArgumentParser
-from onmt.opts import translate_opts
+from onmt.opts import translate_opts, model_opts, train_opts
 import tempfile
-from collections import defaultdict
-import codecs
+from train import create_training_args
+from train import main as trainer
+
 
 class Model:
     def __init__(self, model_path):
@@ -16,7 +17,7 @@ class Model:
         # Process arguments as a namedtuple for ONMT parsing.
         # Change to a list to allow for multiple models.
         if not isinstance(model_path, list):
-            model_path = [model_path]
+            self._model_path = [model_path]
         parser = ArgumentParser()
         translate_opts(parser)
         output_path = tempfile.NamedTemporaryFile(delete=False).name
@@ -66,5 +67,16 @@ class Model:
         for i in range(len(source_mols)):
             res[source_mols[i]] = preds[i*num_predictions:(i+1)*num_predictions]
         return res
+    
+    def train(self):
+        """Trains the model."""
+        train_parser = create_training_args()
+        model_opts(train_parser)
+        train_opts(model_opts)
+        opt = train_parser.parse_args()
+        trainer(opt)
+
+
+
 
     
