@@ -117,7 +117,7 @@ class InvalidSMILES(Evaluator):
                     continue
             tot_invalid.append(num_invalid / len(reaction) )
 
-        return np.mean(tot_invalid)
+        return 1-np.mean(tot_invalid)
 
 
 class Diversity(MLEvaluator):
@@ -248,7 +248,7 @@ class Duplicates(Evaluator):
         print(num_unique_reactants)
 
         total_reactions = len(list(results.values())[0]) * len(results)
-        return num_unique_reactants / total_reactions
+        return 1-(num_unique_reactants / total_reactions)
     
 
 def main():
@@ -258,32 +258,25 @@ def main():
         "Invalid SMILES: ": InvalidSMILES(), # Minimise
         # SCScore(), # Minimise
     }
-    weights = [
-        10,
-        1,
-        1
-    ]
-    powers = [
-        1,
-        -1,
-        -1
-    ]
     with open("task_1_predictions.json", 'r') as f:
         results = json.load(f)
     scoring_str = "Retrosynthesis Metrics\n-------------------\n"
-    scaled_tot = 0
+    tot = 0
     for i, callable in enumerate(metrics):
         unscaled_res =round(metrics[callable](results), 2) 
-        scaled_res =  weights[i]*unscaled_res**powers[i]
+        tot += unscaled_res
         scoring_str += callable + str(f" {unscaled_res}") + "\n"
-
-        scaled_tot += scaled_res
-        scoring_str += "Scaled Result: " + str(round(scaled_res, 2)) + "\n"
         scoring_str += "-------------------\n"
-    # Write to a file 
+    # Perform min-max scaling
+    scaled_score = scale_value(tot, 0, len(metrics))
+    scoring_str += "Total Score: " + str(int(scaled_score)) + "\n"
+    # Write to a file
     with open("scores_task_1.txt", 'w') as f:
         f.write(scoring_str)
 
+def scale_value(value, min_val, max_val):
+    scaled_value = 10 * (value - min_val) / (max_val - min_val)
+    return scaled_value
 
 if __name__ == "__main__":
     main()

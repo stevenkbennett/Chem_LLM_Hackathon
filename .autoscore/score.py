@@ -3,6 +3,7 @@ from pathlib import Path
 
 from langchain import OpenAI
 from tabulate import tabulate
+from Task_1.eval import main as task1_eval
 
 
 def score_task2_question(question, model_answer, student_answer, model):
@@ -61,13 +62,13 @@ def get_task2_score():
 def get_task1_score():
     """Get the total score for task 1 and summarise the score."""
 
-    if not Path("task1.txt").exists():
+    if not Path("task_1_predictions.json").exists():
         return "No results submitted for task 1.", None
-
-    # for steven to implement
-    response = ""
-    score = 0
-
+    task1_eval()
+    with open('scores_task_1.txt', 'r') as f:
+        response = f.read()
+    # Get the integer in the line with total score in 
+    score = int(response.split('\n')[-2].split(' ')[-1])
     return response, score
 
 
