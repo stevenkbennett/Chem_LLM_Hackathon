@@ -1,5 +1,6 @@
 import os
 import random
+from datetime import datetime
 
 import dash
 from dash import Input, Output, callback, dcc, html
@@ -27,27 +28,34 @@ install_cache(
     },
 )
 
-gh = Github(os.environ["GITHUB_ACCESS_TOKEN"])
-repo = gh.get_repo("stevenkbennett/fons_datathon_testing")
 
 
 def get_team_list():
     # define github api settings
+    gh = Github(os.environ["GITHUB_ACCESS_TOKEN"])
+    repo = gh.get_repo("stevenkbennett/fons_datathon_testing")
     open_prs = repo.get_pulls()
     teams = []
     for pr in open_prs:
         score = None
+        time = None
+        url = None
         comments = pr.get_issue_comments()
         for comment in comments:
             if "Total Points" in comment.body:
-                score = int(comment.body.split()[-1].split("/")[0])
+                tmp_score = int(comment.body.split()[-1].split("/")[0])
+                if score is None or tmp_score > score:
+                    score = tmp_score
+                    time = comment.created_at.strftime('%H:%M on %b %d')
+                    url = comment.html_url
 
         if score is not None:
             teams.append(
                 {
                     "name": pr.title,
                     "handle": pr.user.login,
-                    "pr_url": pr.html_url,
+                    "time": time,
+                    "pr_url": url,
                     "img": pr.user.avatar_url,
                     "score": score,
                 }
@@ -62,7 +70,7 @@ def get_team_list():
             create_list_entry(
                 team["rank"],
                 team["name"],
-                team["handle"],
+                team["time"],
                 team["img"],
                 team["score"],
                 team["pr_url"],
@@ -72,7 +80,7 @@ def get_team_list():
     return team_list
 
 
-def create_list_entry(rank, name, handle, img, score, pr_url):
+def create_list_entry(rank, name, time, img, score, pr_url):
     if rank == 1:
         extra_place = " u-text--dark u-bg--yellow"
         extra_kudos = " u-text--yellow"
@@ -105,7 +113,7 @@ def create_list_entry(rank, name, handle, img, score, pr_url):
                                 [
                                     html.Div([name], className="c-media__title"),
                                     html.A(
-                                        handle,
+                                        time,
                                         href=pr_url,
                                         className="c-media__link u-text--small",
                                         target="_blank",
