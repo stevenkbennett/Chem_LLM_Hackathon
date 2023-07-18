@@ -170,7 +170,6 @@ def main():
     }
     with open("task_1_predictions.json", 'r') as f:
         results = json.load(f)
-    scoring_str = "### Retrosynthesis Metrics\n-------------------\n\n"
     tot = 0
     for i, callable in enumerate(metrics):
         unscaled_res =round(metrics[callable](results), 2) 
