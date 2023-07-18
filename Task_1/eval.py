@@ -170,14 +170,13 @@ def main():
     }
     with open("task_1_predictions.json", 'r') as f:
         results = json.load(f)
-    scoring_str = "Retrosynthesis Metrics\n-------------------\n"
+    scoring_str = "### Retrosynthesis Metrics\n-------------------\n\n"
     tot = 0
     for i, callable in enumerate(metrics):
         unscaled_res =round(metrics[callable](results), 2) 
         tot += unscaled_res
-        scoring_str += callable + str(f" {unscaled_res}") + "\n"
-        scoring_str += "-------------------\n"
-    # Perform min-max scaling
+        scoring_str += callable + str(f"     {unscaled_res}") + "\n\n"
+    # Perform min-max scaling between 0 and 5
     scaled_score = scale_value(tot, 0, len(metrics))
     scoring_str += "Total Score: " + str(int(scaled_score)) + "\n"
     # Write to a file
@@ -185,7 +184,7 @@ def main():
         f.write(scoring_str)
 
 def scale_value(value, min_val, max_val):
-    scaled_value = 10 * (value - min_val) / (max_val - min_val)
+    scaled_value = 90 * (value - min_val) / (max_val - min_val)
     return scaled_value
 
 if __name__ == "__main__":

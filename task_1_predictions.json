@@ -182,7 +182,7 @@
     "Cc1cccc(C#Cc2ccc(-c3ccnn3C)cc2)n1": [
         "C#C[Si](C)(C)C.Cc1cccc(I)n1CCn1nccc1-c1ccc(Br)cc1",
         "Brc1ccc(-c2ccn[nH]2)cc1.Cc1cccc(C#C[Si](C)(C)C)n1CCO",
-        "Brc1ccc(-c2ccnn2CCCl)cc1.Cc1cccc(C#C[Si](C)(C)C)n1",
+        "Brc1ccc(-c2ccnn2CCCl)cc1.Cc1ccPcc(C#C[Si](C)(C)C)n1",
         "Brc1ccc(-c2ccn[nH]2)cc1.Cc1cccc(C#C[Si](C)(C)C)n1CCCl",
         "Brc1ccc(-c2ccnn2Cc2cccc(C#C[Si](C)(C)C)n2)cc1.Cc1c",
         "Brc1ccc(-c2ccn[nH]2)cc1.Cc1cccc(C#C[Si](C)(C)C)n1CCOS",
