@@ -2,7 +2,7 @@
     "CC(=O)c1ccc2c(ccn2C(=O)OC(C)(C)C)c1": [
         "CC(=O)c1ccc(NC(=O)OC(C)(C)C)c(CC(C)(C)O)c1CC(C)(C)O",
         "CC(=O)c1ccc(NC(=O)OC(C)(CC)c(C(C)(C)O)c1CC(C)(C)O",
-        "CC(=O)c1ccc(N)c(CC(C)(C)OC(=O)OC(=O)OC(C)(C)C)c1OC(C",
+        "CC(=O)c1ccc(N)c(CC(C)(C)C(=O)OC(=O)OC(C)(C)C)c1OC(C",
         "CC(=O)c1ccc(NC(=O)OC(C)(C)C)c(C(C)(C)O)cCC(C)(C)O",
         "CC(=O)c1ccc(NC(=O)OC(C)(C)C)c(C#CC(C)(C)OC(=O)O)c1",
         "CC(=O)c1ccc(NC(=O)OC(C)(C)C)c(C#CC(C)(C)OC(=O)O)c1",
