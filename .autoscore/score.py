@@ -93,8 +93,18 @@ def get_total_score(task1_score, task2_score, task1_weight=0.5):
 
 def get_response():
     """Get response and scores for all tasks"""
-    task1_response, task1_score = get_task1_score()
-    task2_response, task2_score = get_task1_score()
+    try:
+        task1_response, task1_score = get_task1_score()
+    except Exception as e:
+        print(e)
+        task1_response = f"Error getting task 1 score."
+        task1_score = 0
+    try:
+        task2_response, task2_score = get_task2_score()
+    except Exception as e:
+        print(e)
+        task2_response = f"Error getting task 2 score."
+        task2_score = 0
     # task2_response, task2_score = get_task2_score()
     total_score = get_total_score(task1_score, task2_score)
 
