@@ -10,6 +10,8 @@ import sys
 
 def score_task2_question(question, model_answer, student_answer, model):
     """Score a question in task 2."""
+    # truncate answer to 110 words
+    student_answer = " ".join(student_answer.split()[:110])
     query = f"""A student has been asked the following question: "{question}."
 
 The correct answer for the question is: "{model_answer}"
