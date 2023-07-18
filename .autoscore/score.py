@@ -29,7 +29,7 @@ Rate the students answer using a number from 0 to 10. Do not explain your score.
 def get_task2_score():
     """Get the total score for task 2 and summarise the score."""
     model = OpenAI(temperature=0.9)
-    with open("task2_data.json", "r") as f:
+    with open("test_task_2.json", "r") as f:
         task2_data = json.load(f)
 
     if not Path("task2.txt").exists():
