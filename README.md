@@ -1,5 +1,5 @@
 <!-- Create title -->
-# Welcone to the 2023 Chemistry DigiFab Hackathon
+# Welcome to the 2023 Chemistry DigiFab Hackathon
 
 <!-- Create title -->
 ## Challenge 1: Retrosynthesis Prediction
