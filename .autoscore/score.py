@@ -82,13 +82,13 @@ def get_total_score(task1_score, task2_score, task1_weight=0.5):
     if task1_score is None:
         # This likely means the team is doing the afternoon session only.
         # The task2_score is weighted at 100%
-        return f"{task2_score:.1f}/90"
+        return f"{int(task2_score)}/90"
 
     if task2_score is None:
         # This is probably a morning session team that hasn't started on task 2.
-        return f"{task1_score * task1_weight:.1f}/90"
+        return f"{int(task1_score * task1_weight)}/90"
 
-    return f"{task1_score * task1_weight + task2_score * (1 - task1_weight):.1f}/90"
+    return f"{int(task1_score * task1_weight + task2_score * (1 - task1_weight))}/90"
 
 
 def get_response():
