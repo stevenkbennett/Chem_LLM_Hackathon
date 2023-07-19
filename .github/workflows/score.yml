@@ -28,6 +28,8 @@ jobs:
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output test_task_1.txt .autoscore/test_task_1.txt.gpg
 
       - name: Calculate score and write to score.txt
+        env: 
+          OPENAI_API_KEY: '${{ secrets.OPENAI_API_KEY }}'
         run: python .autoscore/score.py
 
       - name: Upload score to PR comment
