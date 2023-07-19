@@ -13,6 +13,9 @@ The starting point is the [knowledge extraction notebook](https://github.com/ste
 
 ## Using the automated scoring
 
+Your progress on the challenges will be monitored using the automated scoring system. The general idea is to submit a pull request containing your best predictions. The scores will be calculated automatically and uploaded as a comment on your pull request. You can submit multiple predictions and track the progress of your scores over time.
+
+The detailed instructions for using the scoring system are as follows:
 1. Navigate to the hackathon GitHub page: https://github.com/stevenkbennett/Chem_LLM_Hackathon
 2. Fork the repository by clicking the "Fork" button and then “Create Fork”.
 3. In your fork, click “Add file” then “Upload files”.
