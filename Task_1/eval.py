@@ -173,7 +173,7 @@ def main():
         1, 
         1
     ]
-    with open("task_1_predictions.json", 'r') as f:
+    with open("task1.json", 'r') as f:
         results = json.load(f)
     tot = 0
     scoring_str = ""
