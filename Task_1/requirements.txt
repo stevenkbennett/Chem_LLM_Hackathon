@@ -1,5 +1,4 @@
 OpenNMT-py @ git+https://github.com/stevenkbennett/OpenNMT-py.git@hackathon
-rxnfp @ git+https://github.com/rxn4chemistry/rxnfp.git
 rdkit-pypi==2021.9.4
 torch==1.5.1
 torchaudio==0.5.1

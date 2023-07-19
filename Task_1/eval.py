@@ -168,13 +168,18 @@ def main():
         "Invalid SMILES: ": InvalidSMILES(), # Minimise
         # SCScore(), # Minimise
     }
+    weights = [
+        3,
+        1, 
+        1
+    ]
     with open("task_1_predictions.json", 'r') as f:
         results = json.load(f)
     tot = 0
     scoring_str = ""
     for i, callable in enumerate(metrics):
-        unscaled_res =round(metrics[callable](results), 2) 
-        tot += unscaled_res
+        unscaled_res = round(metrics[callable](results), 2) 
+        tot += weights[i] * unscaled_res
         scoring_str += callable + str(f"     {unscaled_res}") + "\n\n"
     # Perform min-max scaling between 0 and 5
     scaled_score = scale_value(tot, 0, len(metrics))
