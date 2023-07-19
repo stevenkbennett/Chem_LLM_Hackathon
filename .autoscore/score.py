@@ -83,7 +83,6 @@ def get_task1_score():
             ["Top-10", scores[0]], 
             ["Duplicates", scores[1]],
             ["Invalid SMILES", scores[2]],
-            ["Total", scores[3]],
         ],
         headers=["Metric", "Score"],
         tablefmt="github",
