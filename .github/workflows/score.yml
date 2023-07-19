@@ -24,7 +24,7 @@ jobs:
 
       - name: Unencrypt answer files in root directory
         run: |
-          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output test_task2.json .autoscore/test_task_2.json.gpg
+          gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output test_task_2.json .autoscore/test_task_2.json.gpg
           gpg --quiet --batch --yes --decrypt --passphrase="${{ secrets.GPG_PASSPHRASE }}" --output test_task_1.txt .autoscore/test_task_1.txt.gpg
 
       - name: Calculate score and write to score.txt
