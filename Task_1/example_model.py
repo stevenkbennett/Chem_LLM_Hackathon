@@ -8,7 +8,7 @@ from train import main as trainer
 from pathlib import Path
 
 class Model:
-    def __init__(self, model_path):
+    def __init__(self, model_path, gpu=-1):
         """Initializes the model.
         
         Args:
@@ -26,6 +26,7 @@ class Model:
             ['-model'] + self._model_path \
             + ['-output'] + [output_path] \
             + ['-src'] + ['None'] \
+            + ['-gpu'] + [str(gpu)] \
         )
         self._model = build_translator(args, report_score=True)
         self._model.fast = True
@@ -81,8 +82,3 @@ class Model:
         )
         
         trainer(opt)
-
-
-
-
-    
