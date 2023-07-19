@@ -182,7 +182,7 @@ def main():
         tot += weights[i] * unscaled_res
         scoring_str += callable + str(f"     {unscaled_res}") + "\n\n"
     # Perform min-max scaling between 0 and 5
-    scaled_score = scale_value(tot, 0, len(metrics))
+    scaled_score = scale_value(tot, 0, sum(weights)) # Sum weights assumes each value is 1
     scoring_str += "Total Score: " + str(int(scaled_score)) + "\n"
     # Write to a file
     with open("scores_task_1.txt", 'w') as f:
