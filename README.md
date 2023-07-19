@@ -17,10 +17,8 @@ Your progress on the challenges will be monitored using the automated scoring sy
 
 The detailed instructions for using the scoring system are as follows:
 1. Navigate to the hackathon GitHub page: https://github.com/stevenkbennett/Chem_LLM_Hackathon
-2. Fork the repository by clicking the "Fork" button and then “Create Fork”.
-3. In your fork, click “Add file” then “Upload files”.
-4. Drag and drop your “task_1_predictions.json” and/or “task2.txt” files to upload them.
-5. Click “Commit changes” to upload your results.
-6. Click “Contribute” and then “Open pull request”.
-7. Click “Create pull request”. Your scores will become available after a few minutes.
-8. To submit new test files, just upload them in your fork using the “Add file” button and the scores will be recalculated.
+2. Please speak to one of the demonstrators who will add you to the repository. You will need to do this before submitting files!
+3. Click “Add file” then “Upload files”
+4. Select “Create a new branch” and click “Propose changes”
+5. Click “Create pull request”. Your automated scores will become available after a few minutes.
+6. To submit new test files, just upload them again using the “Add file” button with the same branch name and the scores will be recalculated.
