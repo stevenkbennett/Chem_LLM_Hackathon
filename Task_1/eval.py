@@ -70,13 +70,16 @@ class InvalidSMILES(Evaluator):
 
 class TopK(Evaluator):
     """Performs a top-N evaluation."""
-    def __init__(self, k):
+    def __init__(self, k, test_path=None):
         """Initializes the evaluator.
         
         Args:
             k (int): The number of predictions to consider.
         """
         self._k = k
+        self._test_path = test_path
+        if self._test_path is None:
+            self._test_path = "test_task_1.txt"
         super().__init__()
 
     def __call__(self, results: dict) -> float:
@@ -91,7 +94,7 @@ class TopK(Evaluator):
         """
         top_k_count = 0
         # Load test data
-        with open("test_task_1.txt", 'r') as f:
+        with open(self._test_path, 'r') as f:
             targets = f.read().replace(" ", "").split("\n")
         for i, reaction in enumerate(results.values()):
             for k, reactants in enumerate(reaction):
