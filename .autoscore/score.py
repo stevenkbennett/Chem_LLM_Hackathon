@@ -72,9 +72,20 @@ def get_task1_score():
     task1_eval()
     with open('scores_task_1.txt', 'r') as f:
         response = f.read()
-    # Get the integer in the line with total score in 
-    score = int(response.split('\n')[-2].split(' ')[-1])
-    return response, score
+
+    # Write function that will check if a line contains a number
+    def has_number(input_str):
+        return any(char.isdigit() for char in input_str)
+
+    scores = [l.split(' ')[-1] for l in response.split("\n") if has_number(l)]
+
+    response = tabulate(
+        zip(range(1, len(scores) + 1), scores),
+        headers=["Top-10", "Duplicates", "Invalid SMILES", "Total"],
+        tablefmt="github",
+    )
+
+    return response, scores[-1]
 
 
 def get_total_score(task1_score, task2_score, task1_weight=0.5):
