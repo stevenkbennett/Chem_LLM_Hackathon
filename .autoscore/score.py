@@ -67,7 +67,7 @@ def get_task1_score():
     """Get the total score for task 1 and summarise the score."""
     sys.path.append(str(Path(__file__+"/../..").resolve()))
     from Task_1.eval import main as task1_eval
-    if not Path("task_1_predictions.json").exists():
+    if not Path("task1.json").exists():
         return "No results submitted for task 1.", None
     task1_eval()
     with open('scores_task_1.txt', 'r') as f:
