@@ -77,10 +77,10 @@ def get_task1_score():
     def has_number(input_str):
         return any(char.isdigit() for char in input_str)
 
-    scores = [l.split(' ')[-1] for l in response.split("\n") if has_number(l)]
+    scores = [float(l.split(' ')[-1]) for l in response.split("\n") if has_number(l)]
 
     response = tabulate(
-        zip(range(1, len(scores) + 1), scores),
+        [str(s) for s in scores],
         headers=["Top-10", "Duplicates", "Invalid SMILES", "Total"],
         tablefmt="github",
     )
