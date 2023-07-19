@@ -37,7 +37,7 @@ def get_task2_score():
 
     response = ""
 
-    student_answers = Path("task2.txt").read_text().split("\n")
+    student_answers = Path("task2.txt").read_text().strip().split("\n")
     if len(student_answers) > 10:
         response += "More than 10 answers provided. Ignoring any answers above line 10.\n\n"
 
