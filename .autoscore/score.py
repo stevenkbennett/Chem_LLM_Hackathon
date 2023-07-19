@@ -17,7 +17,7 @@ def score_task2_question(question, model_answer, student_answer, model):
 The correct answer for the question is: "{model_answer}"
 
 The student has provided the following answer: "{student_answer}"
-Rate the students answer using a number from 0 to 10. Do not explain your score."""
+Rate the students answer using a number from 0 to 10. If the student's answer is blank or not relevant to the question give a score between 0 and 2. If the student's answer is related to the question but is factually correct or doesn't match the correct answer give a score between 2 and 5. If the student's answer is partially correct give a score between 5 and 7. If the student's answer is correct and covers all points in the model answer, give a score between 7 and 10. A score of 10 should only be given if the answer is factually correct, covers all points in the correct answer, and is concise. Answer only with a single number. Do not explain your score."""
     mark = model(query).strip()
     try:
         mark = float(mark)
