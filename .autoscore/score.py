@@ -85,6 +85,7 @@ def get_task1_score():
             ["Invalid SMILES", scores[2]],
             ["Total", scores[3]],
         ],
+        headers=["Metric", "Score"],
         tablefmt="github",
     )
     return response, scores[-1]
