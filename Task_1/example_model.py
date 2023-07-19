@@ -69,16 +69,16 @@ class Model:
             res[source_mols[i]] = preds[i*num_predictions:(i+1)*num_predictions]
         return res
     
-    def train(self, data_path, num_epochs=1):
+    def train(self, data_path, num_epochs=1, gpu_ranks=0):
         """Trains the model."""
         print(self._model_path)
         parser = ArgumentParser()
         model_opts(parser)
         train_opts(parser)
         opt = parser.parse_args(
-            ['-data'] + ['/home/sbennett/Postdoc/Hackathons/Chem_LLM_Hackathon/Fred_Folder/Hackathon/example_notebooks/MolecularTransformer/data/USPTO50USPTO50'] \
+            ['-data'] + [data_path] \
             + ['-train_from'] + [self._model_path[0]] \
             + ['-train_steps'] + [str(num_epochs)] \
+            + ['-gpu_ranks'] + [str(gpu_ranks)]
         )
-        
         trainer(opt)
