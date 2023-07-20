@@ -23,17 +23,16 @@ app.css.config.serve_locally = True
 install_cache(
     cache_control=True,
     urls_expire_after={
-        "*.github.com": 60,  # Placeholder expiration; overridden by Cache-Control
+        "*.github.com": 60, # Placeholder expiration; overridden by Cache-Control
         "*": DO_NOT_CACHE,  # Don't cache anything other than GitHub requests
     },
 )
 
 
-
 def get_team_list():
     # define github api settings
     gh = Github(os.environ["GITHUB_ACCESS_TOKEN"])
-    repo = gh.get_repo("stevenkbennett/fons_datathon_testing")
+    repo = gh.get_repo("stevenkbennett/Chem_LLM_Hackathon")
     open_prs = repo.get_pulls()
     teams = []
     for pr in open_prs:
@@ -42,12 +41,14 @@ def get_team_list():
         url = None
         comments = pr.get_issue_comments()
         for comment in comments:
-            if "Total Points" in comment.body:
-                tmp_score = int(comment.body.split()[-1].split("/")[0])
-                if score is None or tmp_score > score:
-                    score = tmp_score
-                    time = comment.created_at.strftime('%H:%M on %b %d')
-                    url = comment.html_url
+            if "Total score" in comment.body:
+                score = comment.body.split()[-1]
+                if "N/A" in score:
+                    score = 0
+                else:
+                    score = int(score.split("/")[0])
+                time = comment.created_at.strftime('%H:%M on %b %d')
+                url = comment.html_url
 
         if score is not None:
             teams.append(
