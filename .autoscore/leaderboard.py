@@ -41,7 +41,7 @@ def get_team_list():
         url = None
         comments = pr.get_issue_comments()
         for comment in comments:
-            if "Total score" in comment.body:
+            if "Total score" in comment.body and comment.user.login == "github-actions[bot]":
                 score = comment.body.split()[-1]
                 if "N/A" in score:
                     score = 0
