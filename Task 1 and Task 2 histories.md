@@ -36,12 +36,13 @@ Model Limitations: Hallucinations
 	Usually the more concise answer with some comparisons with details score higher than longer redundant answers.
 
 
-Prompt
+## Prompt histories
 https://chat.openai.com/share/d3bf31e5-08a8-43d1-900d-536f2a51506f
 https://chat.openai.com/share/860f864c-7241-4377-a50c-da322aa23f57
 https://chat.openai.com/share/1377a844-e400-496e-b4bc-1074246af0e3
 https://chat.openai.com/share/54a134c2-7cdd-4f71-a26c-af68a1df9288
 
+## Prompt histories 2
 Here are 5 questions to answer below: 
 
 1. What are the key differences between conductors, semiconductors and insulators?
@@ -85,4 +86,5 @@ Output:
    { "id": 1,"explanation":"A covalent bond is a chemical bond that involves the sharing of electrons to form electron pairs between atoms. These electron pairs are known as shared pairs or bonding pairs. The stable balance of attractive and repulsive forces between atoms, when they share electrons, is known as covalent bonding.[1] For many molecules, the sharing of electrons allows each atom to attain the equivalent of a full valence shell, corresponding to a stable electronic configuration."},
    { "id": 2,"explanation":"Group 10 metals are white to light grey in color, and possess a high luster, a resistance to tarnish (oxidation), are highly ductile, and enter into oxidation states of +2 and +4, with +1 being seen in special conditions."}
 ]
+
 DO NOT include anything other than the JSON array in your response.
