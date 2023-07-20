@@ -1,4 +1,4 @@
-# This script is used to evaluate the model on the test set, and is used to generate results. 
+# This script is used to evaluate the model on the test set, and is used to generate results.
 # The Evaluator class can be used to evalate the model on the test set, and generate results.
 
 from rdkit import Chem
@@ -21,7 +21,7 @@ class Evaluator:
         """Initializes the evaluator.
         """
         ...
-    
+
     def __call__(self, results: dict) -> float:
         """Boilerplate call function for performing evaluations."""
         raise NotImplementedError
@@ -72,7 +72,7 @@ class TopK(Evaluator):
     """Performs a top-N evaluation."""
     def __init__(self, k, test_path=None):
         """Initializes the evaluator.
-        
+
         Args:
             k (int): The number of predictions to consider.
         """
@@ -84,11 +84,11 @@ class TopK(Evaluator):
 
     def __call__(self, results: dict) -> float:
         """Performs a top-N evaluation.
-        
+
         Args:
-            results (dict): A dictionary of results of the form 
+            results (dict): A dictionary of results of the form
             `{product_smiles: [reactant_smiles]}`.
-        
+
         Returns:
             float: The top-K accuracy.
         """
@@ -109,12 +109,12 @@ class TopK(Evaluator):
 
     def check_reactant_str(self, reactant_str_1, reactant_str_2):
         """Checks two sets of reactant strings.
-        
+
         Args:
             reactant_str_1 (list): A list of reactant SMILES strings.
             reactant_str_2 (list): A second list of reactant SMILES strings.
 
-        Notes: 
+        Notes:
             Reactant strings should be of the form "reactant1.reactant2.reactant3".
             Multiple components of a reactant should be seperated by a period.
             This function will work for any number and order of reactants.
@@ -128,10 +128,10 @@ class TopK(Evaluator):
                 if any(map(lambda x: self.compare_smiles(r_1, x), r_2_list)):
                     if r_1 == r_1_list[-1]:
                         return True
-                    
+
             return False
 
-  
+
 class Duplicates(Evaluator):
     """Quantifies the number of duplicated reactants. This trivial metric will simply check the number of unique strings.
     """
@@ -143,11 +143,11 @@ class Duplicates(Evaluator):
 
     def __call__(self, results: dict) -> float:
         """Calculates the diversity of the generated reactants.
-        
+
         Args:
-            results (dict): A dictionary of results of the form 
+            results (dict): A dictionary of results of the form
             `{product_smiles: [reactant_smiles]}`.
-        
+
         Returns:
             float: The diversity of the generated reactants.
         """
@@ -161,19 +161,19 @@ class Duplicates(Evaluator):
         print(num_unique_reactants)
 
         total_reactions = len(list(results.values())[0]) * len(results)
-        return 1-(num_unique_reactants / total_reactions)
-    
+        return (num_unique_reactants / total_reactions)
+
 
 def main():
     metrics = {
-        "Top-10: ": TopK(10), # Maximise 
+        "Top-10: ": TopK(10), # Maximise
         "Duplicates:": Duplicates(), # Minimise
         "Invalid SMILES: ": InvalidSMILES(), # Minimise
         # SCScore(), # Minimise
     }
     weights = [
         3,
-        1, 
+        1,
         1
     ]
     with open("task1.json", 'r') as f:
@@ -181,7 +181,7 @@ def main():
     tot = 0
     scoring_str = ""
     for i, callable in enumerate(metrics):
-        unscaled_res = round(metrics[callable](results), 2) 
+        unscaled_res = round(metrics[callable](results), 2)
         tot += weights[i] * unscaled_res
         scoring_str += callable + str(f"     {unscaled_res}") + "\n\n"
     # Perform min-max scaling between 0 and 5
